@@ -48,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			getLogin: async (data) => {
+			getLogin: async (data, navigate) => {
 				let store = getStore();
 
 				try {
@@ -60,9 +60,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(data)
 					});
 					console.log(response);
+					const responseTwo = await response.json()
+					console.log(responseTwo);
+					sessionStorage.setItem("token", responseTwo.token);
+					navigate("/private");
 				} catch (error){
 					console.log(error)
 				}
+			},
+			handleSignup: async (data) => {
+				let store = getStore();
+
+				console.log(data);
+				try {
+					let response = await fetch(`${process.env.BACKEND_URL}/signup`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(data)
+					});
+					console.log(response);
+					const responseTwo = await response.json()
+					console.log(responseTwo);
+					sessionStorage.setItem("token", responseTwo.token);
+					console.log(responseTwo);
+				} catch (error){
+					console.log(error)
+				};
 			}
 		}
 	};
