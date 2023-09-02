@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Private = () => {
-    
+    const {store, actions} = useContext(Context);
     const navigate = useNavigate();
+    const {token} = store;
+
     // window.onload(if())
     useEffect(()=>{
         if(token == null){
-            navigate('/login    ')
+            navigate("/login")
         }
-    })
+    }, [])
     
     return (
         <div className="container-fluid">

@@ -88,6 +88,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error){
 					console.log(error)
 				};
+			},
+			handleLogout: () => {
+				setStore({
+					token: null
+				});
+				sessionStorage.removeItem('token');
 			}
 		}
 	};
