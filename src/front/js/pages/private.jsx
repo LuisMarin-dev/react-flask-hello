@@ -7,7 +7,6 @@ export const Private = () => {
     const navigate = useNavigate();
     const {token} = store;
 
-    // window.onload(if())
     useEffect(()=>{
         if(token == null){
             navigate("/login")

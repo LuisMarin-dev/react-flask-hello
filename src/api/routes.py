@@ -41,10 +41,12 @@ def add_user():
                 return jsonify({"message":f"error: {err.args}"}), 500
 
 
-@api.route('/user', methods=['GET'])
+@api.route('/private', methods=['GET'])
 @jwt_required()
 def get_all_users():
     if request.method == 'GET':
+        user_id = get_jwt_identity()
+        print(user_id)
         user = User.query.get(get_jwt_identity())
         if user.email == "a@gmail.com":
             all_user = User.query.all()
@@ -52,7 +54,6 @@ def get_all_users():
         else:
             return jsonify("no autorizado"), 401
             
-
 
 @api.route('/login', methods=['POST'])
 def handle_login():
@@ -73,10 +74,3 @@ def handle_login():
                     return jsonify({"token": token}), 200
                 else:
                     return jsonify({"message":"Bad credentials"}), 400
-
-
-
-
-
-
-

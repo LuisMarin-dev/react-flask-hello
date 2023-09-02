@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 
-export const SignupButton = () => {
+ const SignupButton = () => {
     const navigate = useNavigate();
 
     const navigateToSignup = () => {
@@ -10,8 +10,8 @@ export const SignupButton = () => {
     };
 
     return(
-        <button className="btn btn-primary" type="button" onClick={navigateToSignup()}>Siignup</button>
+        <button className="btn btn-primary" type="button" onClick={navigateToSignup()}>Signup</button>
     );
 };
 
-//  default LoginButton;
+export default SignupButton;

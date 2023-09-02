@@ -63,6 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const responseTwo = await response.json()
 					console.log(responseTwo);
 					sessionStorage.setItem("token", responseTwo.token);
+					setStore({token: responseTwo.token})
 					navigate("/private");
 				} catch (error){
 					console.log(error)

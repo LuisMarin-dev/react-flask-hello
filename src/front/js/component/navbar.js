@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
-import LoginButton from "./loginbutton.jsx";
-import SignupButton from "./signupbutton.jsx";
+import { Context } from "../store/appContext";
+
 
 export const Navbar = () => {
+const {store, actions} = useContext(Context);
+
+
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
@@ -11,11 +14,14 @@ export const Navbar = () => {
 					<span className="navbar-brand mb-0 h1">Your Auth System</span>
 				</Link>
 				<div className="ml-auto">
-					<Link to="/demo">
-						<SignupButton />
-						<LoginButton />
-						<LoginButton />
-						<button className="btn btn-primary">Logout</button>
+					<Link to="/login">
+						<button className="btn btn-primary">Login</button>
+					</Link>
+					<Link to="/signup">
+						<button className="btn btn-primary">Signup</button>
+					</Link>
+					<Link to="/">
+						<button className="btn btn-primary" onClick={actions.handleLogout}>Logout</button>
 					</Link>
 				</div>
 			</div>
